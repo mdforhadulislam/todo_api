@@ -8,12 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "dd"
+    "url": "git+https://github.com/mdforhadulislam/todo_api.git"
   },
   "keywords": [
     "todo",
     "application"
   ],
   "author": "Forhadul Islam",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdforhadulislam/todo_api/issues"
+  },
+  "homepage": "https://github.com/mdforhadulislam/todo_api#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.6",
+    "nodemon": "^2.0.19"
+  }
 }
