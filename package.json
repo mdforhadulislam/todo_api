@@ -1,0 +1,19 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "This api make only useing todo applicatopn",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "dd"
+  },
+  "keywords": [
+    "todo",
+    "application"
+  ],
+  "author": "Forhadul Islam",
+  "license": "ISC"
+}
