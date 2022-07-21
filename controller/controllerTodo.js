@@ -6,12 +6,30 @@ const controllerTodo = {};
 controllerTodo.listTodo = async (req, res) => {
   const todos = await Todo.find();
 
-  if (todos.length === 0) {
-    return res.status(404).json({
-      message: "No todo found",
-    });
+  if (req.query.done === "true") {
+    const doneTodo = todos.filter((todo) => todo.done === true);
+    res.status(200).json(doneTodo);
+  } else if (req.query.done === "false") {
+    const doneTodo = todos.filter((todo) => todo.done === false);
+    res.status(200).json(doneTodo);
+  } else if (req.query.update === "true") {
+    const updateTodo = todos.filter(
+      (todo) => todo.createdAt.toString() !== todo.updatedAt.toString()
+    );
+    res.status(200).json(updateTodo);
+  } else if (req.query.update === "false") {
+    const updateTodo = todos.filter(
+      (todo) => todo.createdAt.toString() === todo.updatedAt.toString()
+    );
+    res.status(200).json(updateTodo);
+  } else {
+    if (todos.length === 0) {
+      return res.status(404).json({
+        message: "No todo found",
+      });
+    }
+    return res.status(200).json(todos);
   }
-  res.status(200).json(todos);
 };
 
 //single todo controller
@@ -59,22 +77,25 @@ controllerTodo.deleteTodo = async (req, res) => {
       return res.status(404).json({ message: "No todo found" });
     }
   } catch (error) {
-    console.log(error);
     res.status(404).json({ message: "There was a problem in your request" });
   }
 };
 
 //update todo controller
 controllerTodo.updateTodo = async (req, res) => {
-  const { _id } = req.params;
-  const todo = await Todo.findById(_id);
-  
-  console.log(todo);
-  todo.task = req.body.task;
-  todo.done = req.body.done;
+  try {
+    const { _id } = req.params;
+    const todo = await Todo.findById(_id);
 
-  const updateTodo = await todo.save();
-  console.log(updateTodo);
+    todo.task = req.body.task;
+    todo.done = req.body.done;
+
+    const updateTodo = await todo.save();
+
+    res.status(200).json(updateTodo);
+  } catch (error) {
+    res.status(404).json({ message: "There was a problem in your request" });
+  }
 };
 
 module.exports = controllerTodo;

@@ -6,5 +6,5 @@ mongoose
     console.log("contected to database");
   })
   .catch((err) => {
-    console.log("error");
+    console.log("can't contected to database");
   });
