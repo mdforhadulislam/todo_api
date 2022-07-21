@@ -6,22 +6,31 @@ const controllerTodo = {};
 controllerTodo.listTodo = async (req, res) => {
   const todos = await Todo.find();
 
+  // this statement working filter done todo value true
   if (req.query.done === "true") {
     const doneTodo = todos.filter((todo) => todo.done === true);
     res.status(200).json(doneTodo);
+
+    // this statement working filter done todo value false
   } else if (req.query.done === "false") {
     const doneTodo = todos.filter((todo) => todo.done === false);
     res.status(200).json(doneTodo);
+
+    // this statement working filter update todo sent user
   } else if (req.query.update === "true") {
     const updateTodo = todos.filter(
       (todo) => todo.createdAt.toString() !== todo.updatedAt.toString()
     );
     res.status(200).json(updateTodo);
+
+    // this statement working filter no update todo sent user
   } else if (req.query.update === "false") {
     const updateTodo = todos.filter(
       (todo) => todo.createdAt.toString() === todo.updatedAt.toString()
     );
     res.status(200).json(updateTodo);
+
+    // this is working user request no query and user hit root todo api url
   } else {
     if (todos.length === 0) {
       return res.status(404).json({
