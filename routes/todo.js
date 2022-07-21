@@ -11,9 +11,7 @@ Router.get("/:_id", controllerTodo.singleTodo);
 Router.post("/", controllerTodo.createTodo);
 
 //update -> put
-Router.put("/:_id", (req, res) => {
-  res.send("Update todo with id: " + req.params._id);
-});
+Router.put("/:_id", controllerTodo.updateTodo);
 
 //delete -> delete
 Router.delete("/:_id", controllerTodo.deleteTodo);

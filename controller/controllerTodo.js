@@ -64,4 +64,17 @@ controllerTodo.deleteTodo = async (req, res) => {
   }
 };
 
+//update todo controller
+controllerTodo.updateTodo = async (req, res) => {
+  const { _id } = req.params;
+  const todo = await Todo.findById(_id);
+  
+  console.log(todo);
+  todo.task = req.body.task;
+  todo.done = req.body.done;
+
+  const updateTodo = await todo.save();
+  console.log(updateTodo);
+};
+
 module.exports = controllerTodo;
