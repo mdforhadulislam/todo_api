@@ -4,7 +4,9 @@
   "description": "This api make only useing todo applicatopn",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon src/index.js",
+    "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build": "./node_modules/.bin/netlify-lambda build src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +30,8 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.4.6",
-    "nodemon": "^2.0.19"
+    "netlify-lambda": "^2.0.15",
+    "nodemon": "^2.0.19",
+    "serverless-http": "^3.0.1"
   }
 }
