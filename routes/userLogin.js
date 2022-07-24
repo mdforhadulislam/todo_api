@@ -3,7 +3,7 @@ const controllerLogin = require("../controller/controllerLogin");
 
 Router.get("/:_id", (req, res) => {});
 
-Router.post("/", (req, res) => {});
+Router.post("/", );
 
 Router.put("/:_id", (req, res) => {});
 

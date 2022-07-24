@@ -62,14 +62,18 @@ controllerTodo.singleTodo = async (req, res) => {
 // create todo controller
 controllerTodo.createTodo = async (req, res) => {
   try {
-    const todo = new Todo({
-      task: req.body.task,
-      done: req.body.done,
-    });
-    const newTodo = await todo.save();
-    res.status(200).json(newTodo);
+    if (req.body.task && req.body.done) {
+      const todo = new Todo({
+        task: req.body.task,
+        done: req.body.done,
+      });
+      const newTodo = await todo.save();
+      res.status(200).json(newTodo);
+    } else {
+      res.status(404).json({ message: "There was a problem in your request" });
+    }
   } catch (error) {
-    res.status(404).json({ message: "There was a problem in your request" });
+    res.status(404).json({ message: "There was a server side problem " });
   }
 };
 
@@ -86,7 +90,7 @@ controllerTodo.deleteTodo = async (req, res) => {
       return res.status(404).json({ message: "No todo found" });
     }
   } catch (error) {
-    res.status(404).json({ message: "There was a problem in your request" });
+    res.status(404).json({ message: "There was a server side problem " });
   }
 };
 
@@ -103,7 +107,7 @@ controllerTodo.updateTodo = async (req, res) => {
 
     res.status(200).json(updateTodo);
   } catch (error) {
-    res.status(404).json({ message: "There was a problem in your request" });
+    res.status(404).json({ message: "There was a server side problem " });
   }
 };
 

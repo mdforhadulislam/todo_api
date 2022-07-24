@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const passport = require("passport");
 
 require("dotenv").config();
 require("./dbconect");
@@ -15,6 +16,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 
 const todoRouter = require("./routes/todo");
 const userRgister = require("./routes/userRgister");
